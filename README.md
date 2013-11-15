@@ -84,7 +84,7 @@ Here are some use cases and full examples:
 
 ## Installation
 
-Add `pod 'ZWPLayout'` to your `Podfile` and then run `pod install`.
+Add `pod 'ZWPLayout', :git => 'https://github.com/zwopple/ZWPLayout.git'` to your `Podfile` and then run `pod install`.
 
 ## License
 

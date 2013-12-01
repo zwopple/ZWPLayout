@@ -14,21 +14,25 @@
         UIView *v1 = self;
         UIView *v2 = otherView;
         
-        do {
-            v1 = v1.superview;
-            v2 = v2.superview;
-            if(v1) {
-                [s1 addObject:v1];
-            }
-            if(v2) {
-                [s2 addObject:v2];
-            }
-            if([s1 intersectsSet:s2]) {
-                [s1 intersectSet:s2];
-                commonSuperview = [s1 anyObject];
-                break;
-            }
-        } while(v1 && v2);
+        if([v1 isDescendantOfView:v2]) {
+            commonSuperview = v2;
+        } else {
+            do {
+                v1 = v1.superview;
+                v2 = v2.superview;
+                if(v1) {
+                    [s1 addObject:v1];
+                }
+                if(v2) {
+                    [s2 addObject:v2];
+                }
+                if([s1 intersectsSet:s2]) {
+                    [s1 intersectSet:s2];
+                    commonSuperview = [s1 anyObject];
+                    break;
+                }
+            } while(v1 && v2);
+        }
         
         ZWPLayoutAssert(commonSuperview != nil, @"No common superview");
     } else {
